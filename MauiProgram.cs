@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls.Maps;
+using LocationTracker.Services;
 
 namespace LocationTracker;
 
@@ -26,6 +27,9 @@ public static class MauiProgram
             fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
             fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
         });
+
+        // Add single connection to the database
+        builder.Services.AddSingleton<LocationDatabase>();
 
         return builder.Build();
     }
