@@ -7,6 +7,8 @@ The application periodically records the user's GPS location, stores it in a loc
 
 This project demonstrates location tracking, database storage, and map visualization using .NET MAUI.
 
+Tracked locations are visualized on the map as a heat map using accumulated location data.
+
 ## Features
 - Real-time GPS location tracking
 - SQLite local data storage
