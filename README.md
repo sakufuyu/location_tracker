@@ -56,7 +56,9 @@ dotnet build -f net10.0-ios -t:Run
 
 # User interface
 You track where you were.
+
 If you stay the same location, the mark color changes in the following order:
+
 🔵 ➡️ 🟡 ➡️ 🟠 ➡️ 🔴 ➡️ 🟣
 
 <table align="center">
