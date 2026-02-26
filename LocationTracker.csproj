@@ -21,8 +21,8 @@
         If test with xcode environment, use "com.locationtracker.app".
         If test with my device, use "com.fuyukikobayashi.locationtracker"
     -->
-    <!-- <ApplicationId>com.locationtracker.app</ApplicationId> -->
-    <ApplicationId>com.fuyukikobayashi.locationtracker</ApplicationId>
+    <ApplicationId>com.locationtracker.app</ApplicationId>
+    <!-- <ApplicationId>com.fuyukikobayashi.locationtracker</ApplicationId> -->
 
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
