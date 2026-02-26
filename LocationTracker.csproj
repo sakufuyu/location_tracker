@@ -3,8 +3,8 @@
     <!--
       TargetFrameworks: Specify the platform to build.
       net10.0-ios = for iOS、net10.0-android = for Android
-      UseMaui = Flagg for activate MAUI
-      Microsoft.Maui.Controls.Maps = Package for Map controll
+      UseMaui = Enables .NET MAUI framework features
+      Microsoft.Maui.Controls.Maps = Provides Map control support
     -->
     <TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
     <OutputType>Exe</OutputType>
@@ -17,7 +17,13 @@
     <Nullable>enable</Nullable>
 
     <ApplicationTitle>Location Tracker</ApplicationTitle>
-    <ApplicationId>com.locationtracker.app</ApplicationId>
+    <!-- 
+        If test with xcode environment, use "com.locationtracker.app".
+        If test with my device, use "com.fuyukikobayashi.locationtracker"
+    -->
+    <!-- <ApplicationId>com.locationtracker.app</ApplicationId> -->
+    <ApplicationId>com.fuyukikobayashi.locationtracker</ApplicationId>
+
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
 

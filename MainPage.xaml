@@ -21,7 +21,7 @@
             Primary map surface.
             Responsibilities:
             - Displays real-time user location
-            - Will later host overlays (pins / heatmap layers)
+            - Hosts heatmap visualization overlays using MapElements
             
             Note:
             - IsShowingUser only shows the system blue dot.

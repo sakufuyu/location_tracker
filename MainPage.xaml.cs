@@ -1,5 +1,7 @@
 using LocationTracker.Models;
 using LocationTracker.Services;
+using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Maps;
 
 namespace LocationTracker;
@@ -36,6 +38,9 @@ public partial class MainPage : ContentPage
 
         // Subscribe to live GPS updates
         _locationService.LocationChanged += OnLocationChanged;
+
+        // Reload saved path from SQLite
+        LoadSavedPoints();
     }
 
     /// <summary>
@@ -57,6 +62,9 @@ public partial class MainPage : ContentPage
             StatusLabel.Text = $"Lat: {record.Latitude:F6}  Lon: {record.Longitude:F6}";
             PointCountLabel.Text = $"Points saved: {_pointCount}";
 
+            // Draw current location on Map
+            AddHeatPoint(record);
+
             // Re-center map around latest location
             MyMap.MoveToRegion(
                 MapSpan.FromCenterAndRadius(
@@ -64,7 +72,43 @@ public partial class MainPage : ContentPage
                     Distance.FromKilometers(1)
                 )
             );
+            AddHeatPoint(record);
         });
+    }
+
+    /// <summary>
+    /// Load previously saved locations from SQLite
+    /// and redraw them on the map.
+    /// Called when the page start.
+    /// </summary>
+    private async void LoadSavedPoints()
+    {
+        var records = await _locationDatabase.GetLocationsAsync();
+
+        foreach (var record in records)
+        {
+            AddHeatPoint(record);
+        }
+
+        _pointCount = records.Count;
+        PointCountLabel.Text = $"Points saved: {_pointCount}";
+    }
+
+    /// <summary>
+    /// Adds a heatmap-style circle overlay at the given location.
+    /// Each saved point contributes visual density.
+    /// </summary>
+    private void AddHeatPoint(LocationRecord record)
+    {
+        var circle = new Circle
+        {
+            Center = new Location(record.Latitude, record.Longitude),
+            Radius = new Distance(8),
+            StrokeColor = Colors.Transparent,
+            FillColor = Colors.Blue
+        };
+
+        MyMap.MapElements.Add(circle);
     }
 
     /// <summary>
@@ -86,6 +130,8 @@ public partial class MainPage : ContentPage
             ToggleButton.BackgroundColor = Color.FromArgb("#512BD4");
 
             StatusLabel.Text = "Tracking stopped.";
+
+            return;
         }
         else
         {
