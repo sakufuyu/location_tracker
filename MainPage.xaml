@@ -6,16 +6,73 @@
              Title="Location Tracker">
 
     <!-- 
-        Main map view for the application.
-        This page currently focuses on displaying the user's real-time location.
+        Layout structure:
+        - Row 0: Full-screen map surface
+        - Row 1: Fixed control panel (auto height)
         
-        Notes:
-        - MapType is set to Street for standard road-level detail.
-        - IsShowingUser enables the platform-native blue location indicator.
-        - Additional overlays (pins, heat map layers) can be added later.
+        Rationale:
+        - Grid is used instead of StackLayout to guarantee the map
+          occupies all remaining vertical space.
+        - Control panel remains anchored at the bottom.
     -->
-    <maps:Map x:Name="MyMap"
-              IsShowingUser="True"
-              MapType="Street" />
+    <Grid RowDefinitions="*, Auto">
+
+        <!-- 
+            Primary map surface.
+            Responsibilities:
+            - Displays real-time user location
+            - Will later host overlays (pins / heatmap layers)
+            
+            Note:
+            - IsShowingUser only shows the system blue dot.
+            - Initial region must be set in code-behind.
+        -->
+        <maps:Map x:Name="MyMap"
+                  Grid.Row="0"
+                  IsShowingUser="True"
+                  MapType="Street" />
+
+        <!-- 
+            Control panel section.
+            Contains:
+            - Tracking status text
+            - Stored point counter
+            - Start/Stop toggle button
+            
+            Background color adapts to light/dark mode.
+        -->
+        <StackLayout Grid.Row="1"
+                     Padding="16"
+                     Spacing="10"
+                     BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}">
+
+            <!-- Displays current tracking state -->
+            <Label x:Name="StatusLabel"
+                   Text="Tap Start to begin tracking your location."
+                   FontSize="14"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- Displays number of stored GPS samples -->
+            <Label x:Name="PointCountLabel"
+                   Text="Points saved: 0"
+                   FontSize="12"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- 
+                Toggle button:
+                - Starts or stops GPS polling
+                - Click handler implemented in code-behind
+                
+                Future improvement:
+                - Bind to ViewModel instead of Clicked event (MVVM)
+            -->
+            <Button x:Name="ToggleButton"
+                    Text="Start Tracking"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Clicked="OnToggleClicked" />
+        </StackLayout>
+    </Grid>
 
 </ContentPage>

@@ -30,6 +30,10 @@ public static class MauiProgram
 
         // Add single connection to the database
         builder.Services.AddSingleton<LocationDatabase>();
+        // Add single connection to the Location Service
+        builder.Services.AddSingleton<LocationService>();
+        // Register the main page
+        builder.Services.AddTransient<MainPage>();
 
         return builder.Build();
     }
