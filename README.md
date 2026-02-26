@@ -70,19 +70,16 @@ Tracking Screen
 <img src="https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9298.PNG" width="250"><br>
 Heat Map View
 </td>
-</tr>
 
 <td align="center">
 <img src="https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9294.PNG" width="250"><br>
 Heat Map View
 </td>
-</tr>
 
 <td align="center">
 <img src="https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9293.PNG" width="250"><br>
 Heat Map View
 </td>
-</tr>
 
 <td align="center">
 <img src="https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9297.PNG" width="250"><br>
