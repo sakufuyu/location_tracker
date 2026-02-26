@@ -53,3 +53,6 @@ Run the application:
 ```
 dotnet build -f net10.0-ios -t:Run
 ```
+
+# User interface
+1. You track ![where you were](https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9299.PNG).
