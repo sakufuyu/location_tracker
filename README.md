@@ -19,6 +19,9 @@ This project demonstrates location tracking, database storage, and map visualiza
 - .NET MAUI Maps
 - SQLite (sqlite-net-pcl)
 
+## Manifestfile
+[Info.plist](https://github.com/sakufuyu/location_tracker/blob/main/Platforms/iOS/Info.plist)
+
 ## How to Use
 1. Launch the application.
 2. Grant location permission when requested.
