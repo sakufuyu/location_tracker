@@ -24,6 +24,9 @@ public partial class MainPage : ContentPage
     // In-memory counter for UI display
     private int _pointCount = 0;
 
+    // Location cluster counter for heatmap
+    private readonly Dictionary<string, int> _heatCounter = new();
+
     /// <summary>
     /// Constructor with dependency injection.
     /// Services are provided by the MAUI DI container.
@@ -95,20 +98,99 @@ public partial class MainPage : ContentPage
     }
 
     /// <summary>
-    /// Adds a heatmap-style circle overlay at the given location.
-    /// Each saved point contributes visual density.
+    /// Adds a visual heat point to the map.
+    ///
+    /// Workflow:
+    /// 1. Convert GPS coordinate into grid cell.
+    /// 2. Increase visit counter for that cell.
+    /// 3. Determine heat intensity color.
+    /// 4. Render a colored circle overlay on the map.
+    ///
+    /// Design decision:
+    /// Instead of drawing complex heatmap overlays,
+    /// this lightweight approach uses MapElements.Circle
+    /// to simulate heat density visualization.
+    /// 
+    /// Advantage:
+    /// - Cross-platform
+    /// - Simple implementation
+    /// - Meets assignment heatmap requirement
     /// </summary>
     private void AddHeatPoint(LocationRecord record)
     {
+        var key = GetGridKey(record);
+
+        if (!_heatCounter.ContainsKey(key))
+        {
+            _heatCounter[key] = 0;
+        }
+        _heatCounter[key]++;
+
+        var count = _heatCounter[key];
+        var color = GetHeatColor(count);
+
         var circle = new Circle
         {
             Center = new Location(record.Latitude, record.Longitude),
-            Radius = new Distance(8),
+            Radius = new Distance(10),
             StrokeColor = Colors.Transparent,
-            FillColor = Colors.Blue
+            FillColor = color
         };
 
         MyMap.MapElements.Add(circle);
+    }
+
+    /// <summary>
+    /// To change the color of points on the map,
+    /// latitude and longitude are rounded to 4 decimal places
+    /// </summary>
+    /// <param name="record">Location sample obtained from GPS.</param>
+    /// <returns>
+    /// A string key representing an approximate geographic cell
+    /// (~11 meters resolution).
+    /// </returns>
+    private string GetGridKey(LocationRecord record)
+    {
+        // Round 0.0001 ≒ Approx 11 meters
+        var lat = Math.Round(record.Latitude, 4);
+        var lon = Math.Round(record.Longitude, 4);
+
+        return $"{lat}_{lon}";
+    }
+
+    /// <summary>
+    /// Determines heatmap color based on visit count.
+    ///
+    /// Heat scale:
+    /// 1–9   : Blue   (low activity)
+    /// 10–19 : Yellow
+    /// 20–29 : Orange
+    /// 30–39 : Red
+    /// 40+   : Purple (high activity)
+    /// </summary>
+    /// <param name="count">
+    /// Number of recorded visits within the same geographic grid.
+    /// </param>
+    /// <returns>
+    /// A color representing location intensity,
+    /// ranging from low activity (blue)
+    /// to high activity (purple).
+    /// </returns>
+    private Color GetHeatColor(int count)
+    {
+        if (count < 10)
+            return Colors.Blue;
+
+        if (count < 20)
+            return Colors.Yellow;
+
+        if (count < 30)
+            return Colors.Orange;
+
+        if (count < 40)
+            return Colors.Red;
+
+        return Colors.Purple;
     }
 
     /// <summary>
