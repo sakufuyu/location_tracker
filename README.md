@@ -57,7 +57,7 @@ dotnet build -f net10.0-ios -t:Run
 # User interface
 You track where you were.
 
-If you stay the same location, the mark color changes in the following order:
+If you stay the same location, the mark color changes in the following order in every `100` seconds:
 
 🔵 ➡️ 🟡 ➡️ 🟠 ➡️ 🔴 ➡️ 🟣
 
@@ -70,7 +70,7 @@ Tracking Screen
 
 <td align="center">
 <img src="https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9298.PNG" width="250"><br>
-Heat Map View
+Larger tracking Screen
 </td>
 
 <td align="center">
@@ -89,3 +89,4 @@ Heat Map View
 </td>
 </tr>
 </table>
+(yes I'm living in Seattle...)
