@@ -55,4 +55,17 @@ dotnet build -f net10.0-ios -t:Run
 ```
 
 # User interface
-1. You track ![where you were](https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9299.PNG).
+1. You track where you were.
+<table align="center">
+<tr>
+<td align="center">
+<img src="https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9299.PNG" width="250"><br>
+Tracking Screen
+</td>
+
+<td align="center">
+<img src="https://github.com/sakufuyu/location_tracker/blob/main/Resources/UI/IMG_9298.PNG" width="250"><br>
+Heat Map View
+</td>
+</tr>
+</table>
