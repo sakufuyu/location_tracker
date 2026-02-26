@@ -1,4 +1,6 @@
 # Location Tracker (.NET MAUI)
+### The application was developed and tested using an iOS simulator and physical iOS device.
+
 ## Overview
 Location Tracker is a mobile application developed using C# and .NET MAUI.
 The application periodically records the user's GPS location, stores it in a local SQLite database, and displays tracked locations on a map.

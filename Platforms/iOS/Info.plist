@@ -3,58 +3,7 @@
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
-    <!-- This app runs only on iOS devices -->
-    <key>LSRequiresIPhoneOS</key>
-    <true/>
-
-    <!-- Supported device families: 
-         1 = iPhone, 2 = iPad -->
-    <key>UIDeviceFamily</key>
-    <array>
-        <integer>1</integer>
-        <integer>2</integer>
-    </array>
-
-    <!-- App requires 64-bit ARM architecture -->
-    <key>UIRequiredDeviceCapabilities</key>
-    <array>
-        <string>arm64</string>
-    </array>
-
-    <!-- Supported screen orientations -->
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-
-    <!-- 
-        Required by Apple when requesting location permission.
-        The text must clearly explain why location data is needed.
-        This string is displayed in the system permission dialog.
-    -->
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>
-        This app uses your location to generate a heat map of places you visit.
-    </string>
-
-    <!-- 
-        Required if background location tracking is enabled.
-        Apple will reject vague explanations.
-        Must clearly justify continuous tracking.
-    -->
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>
-        This app tracks your location in the background to build a complete movement heat map.
-    </string>
-
-    <!-- Enable background location updates -->
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>location</string>
-    </array>
-
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>This app uses your location to generate a heat map of places you visit.</string>
 </dict>
 </plist>
